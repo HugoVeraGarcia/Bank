@@ -11,20 +11,27 @@ import TransferItem from '../transfer-item/transfer-item.component';
 
 
 const TransferHistory = () => {
-	const transfers = useSelector(state => state.transfers)
 
+	const transfers = useSelector(state => state.transfers)
 	const users = useSelector(state => state.users)
 	const dispatch = useDispatch();
 
-	useEffect(() => {
-		dispatch(getUsersTransfers(users.user.id));
-	}, [dispatch, users.user.id]);
+		useEffect(() => {
+				if (users.user){
+					dispatch(getUsersTransfers(users.user.id));			
+				}
+			}, [ dispatch ]);	
+	
+			console.log('transfers:', transfers);
 
 	return (
 		<div>
 			{transfers &&
 				transfers.map(transfer => <TransferItem transfer={transfer} />)}
+		
 		</div>
+
+		
 	);
 };
 

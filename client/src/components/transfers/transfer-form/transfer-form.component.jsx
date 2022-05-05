@@ -28,8 +28,8 @@ const TransferForm = ({ onHideModal }) => {
 		if (!accountNumber || !amount) {
 			return;
 		}
-
-		dispatch(newTransfer(user.accountNumber, accountNumber, amount));
+		const credentials ={accountNumber: user.accountNumber, accountNumberSender: accountNumber, amount: amount};
+		dispatch(newTransfer(credentials));
 
 		onHideModal();
 	};
